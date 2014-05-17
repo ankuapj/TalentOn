@@ -1,0 +1,245 @@
+#canvas{
+	/*background-color: #EBECE8;*/
+	background: url('bg.jpg');
+	background-size: cover;
+	background-position: 0px -160px;
+	background-attachment: fixed;
+	font-family: 'Maven Pro', sans-serif;
+	line-height: 25px;
+	margin: 0px;
+	padding: 5px;
+}
+
+#dash{
+	position: fixed;
+	background: rgba(255,255,255,0.8);
+	margin-left: -10px;
+	margin-top: -5px;
+	width: 101%;
+	z-index: 2000;
+	height: 50px;
+}
+
+#search-box{
+	float: right; 
+	width: 50%;
+}
+
+.menu{
+	position: relative;
+	display: block;
+	float: left;
+	color: #000;
+	margin: 5px 10px 5px 20px;
+	padding: 10px 10px 10px 10px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+
+.menu:hover{
+	background: #000;
+	color: #fff;
+}
+
+/*Level 1 Menu*/
+nav ul{
+	list-style-type: none;
+}
+
+nav ul li{
+	position: relative;
+	display: block;
+	float: left;
+	color: #000000;
+	background: url("arrow_down.png") left no-repeat;
+	background-position: 20px 50%;
+	margin: -11px 10px 0px 20px;
+	padding: 10px 10px 10px 10px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	cursor: default;
+}
+
+nav ul li:hover{
+	background: url("arrow_down.png") #000 left no-repeat;
+	background-position: 20px 50%;
+	color: #fff;
+}
+
+/*Level 2 Menu*/
+nav ul li:hover>img{
+	display: block;
+	padding: 0px 100% 0px 0px;
+	margin-top: 3px;
+	margin-left: 10px;
+}
+
+nav ul li img{
+	display: none;
+	position: absolute;
+	top: 36px;
+	left: 8px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+nav ul li:hover>ul{
+	display: block;
+}
+
+nav ul li ul{
+	display: none;
+	position: absolute;
+	background-color: rgba(255,255,255,0.6);
+	top: 100%;
+	left: 0%;
+	margin: 0;
+	padding: 0;
+	min-width: 120%;
+}
+
+nav ul li ul li{
+	float: none;
+	color: #000;
+	background: url("arrow_right.png") rgba(255,255,255,0.9) left no-repeat;
+	background-position: 10px 50%;
+	background-size: 5px 7px;
+	font-size: 0.9em;
+	margin: 5px 10px 5px 20px;
+	padding-right: 100px;
+	padding-left: 30px;
+	margin-left: 6px;
+	cursor: pointer;
+}
+
+nav ul li ul li:hover{
+	background: url("arrow_right.png") rgba(22,37,229,1) left no-repeat;
+	background-position: 10px 50%;
+	background-size: 5px 7px;
+	color: #fff;
+	left: 3px;
+}
+
+.search{
+	background: url("search.png") right no-repeat;
+	background-position: 97% 50%;
+	margin: 10px 10px 10px 20px;
+	height: 30px;
+	width: 25%;
+	padding: 0 40px 0 10px;
+	float: left;
+	color: #000;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.search:hover{
+	border-color: #757575;
+}
+
+.container1{
+	width: 960px;
+	margin-left: 190px;
+	margin-right: 190px;
+	margin-top: 75px;
+	display: inline-block;
+	background: rgba(255,255,255,0.9);
+	box-shadow: 0 1px 2px 1px rgba(0,0,0,0.25);
+}
+
+.header{
+	width: 94%;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: solid #d9d9d9 1px;
+}
+
+#lform{
+	width: 75%;
+	float: left;
+	border-right: solid #d9d9d9 1px;
+}
+
+#rform{
+	width: 25%;
+	float: left;
+	border-right: solid #d9d9d9 1px;
+	margin-top: 15%;
+}
+
+.form{
+	width: 75%;
+	float: left;
+	display: inline-block;
+	margin-left: 50px;
+	margin-right: -60px;
+}
+
+.error{
+	width: 25%;
+	float: left;
+	display: inline-block;
+	margin-top: 200px;
+	margin-left: -20px;
+	color: red;
+}
+
+.label{
+	height: 30px;
+	width: 160px;
+	padding: 10px 10px 10px 0px;
+	font-size: 1em;
+	text-align: right;
+	display: inline-block;
+	margin-left: -20;
+}
+
+.field{
+	height: 30px;
+	width: 240px;
+	font-size: 0.8em;
+	padding: 5px;
+	margin: 10px 0px 10px 0px;
+	display: inline;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	box-shadow: 1px 1px 10px rgba(158, 158, 158, 0.9);
+}
+
+.socb{
+	display: none;
+	margin: 0 20px;
+	cursor: pointer;
+	border-radius: 50%;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.field:hover{
+	box-shadow: 1px 1px 10px rgba(22,37,229,1);
+}
+
+.socb:hover{
+	border-radius: 50%;
+	box-shadow: 3px 3px 15px #000;
+}

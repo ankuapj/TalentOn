@@ -1,0 +1,12 @@
+<?php
+$client_id_gh="5da9154c8e458174d69d";
+$client_secret_gh="2ea426836ba3adb91d021c07e4e479dc2e1a23a8";
+$url_gh="https://github.com/login/oauth/access_token";
+$client_id_al="0048b1c8cf67707ac87303bf1e080a87";
+$client_secret_al="50c28916931df2f7291095248c52d4b0";
+$url_al="https://angel.co/api/oauth/token";
+$state="BASD789JKLZIU78K09";
+$url_li="https://www.linkedin.com/uas/oauth2/accessToken";
+$client_id_li="75vjsp67gi9y8a";
+$client_secret_li="qy6vsH4RFMzbRei2";
+?>

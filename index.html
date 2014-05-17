@@ -1,0 +1,272 @@
+﻿<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>TalentOn - Hunt begins here</title>
+		<meta></meta>
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
+		<link rel="stylesheet" href="date/jquery-ui.css">
+		<script src="date/jquery-1.10.2.js"></script>
+		<script src="date/jquery-ui.js"></script>
+        <script type="text/javascript">
+		function signupOther(url)
+		{
+			window.location.href=url;
+		}
+		</script>
+        <script type="text/javascript">
+		$(document).ready(function() {
+            $.ajax({
+				url:'getSignUpData.php',
+				type:'POST',
+				success:function(data)
+				{
+					if(data!="")
+					{
+						var object=JSON.parse(data);
+						var name=object['name'].split(" ");
+						var email=object['email'];
+						$("#FNAME").val(name[0]);
+						$("#LNAME").val(name[1]);
+						$("#EMAIL").val(email);
+					}
+				}
+			});
+        });
+		</script>
+		<script>
+		$(function() {
+			$( "#datepicker" ).datepicker({
+			  changeMonth: true,
+			  changeYear: true,
+			});
+			$( "#datepicker" ).datepicker('option',{
+			  minDate: new Date(Date.parse("1950-01-01")),
+			  maxDate: new Date(Date.parse("2000-12-31"))			  
+			});
+		});
+		</script>
+		<script>
+		function check()
+		{
+			if(document.getElementById("EMP").checked==true)
+			{
+				document.getElementById("soc1").style.display = "inline";
+				document.getElementById("soc2").style.display = "none";
+				document.getElementById("soc3").style.display = "inline";
+				document.getElementById("sub").style.display = "block";
+			}
+			else if(document.getElementById("DEV").checked==true)
+			{
+				document.getElementById("soc1").style.display = "inline";
+				document.getElementById("soc2").style.display = "inline";
+				document.getElementById("soc3").style.display = "none";
+				document.getElementById("sub").style.display = "block";
+			}
+		}
+		</script>
+		<script>
+		function validateForm()
+		{
+			var a=document.forms["FORM"]["FNAME"].value;
+			if (a==null || a=="")
+			{
+				document.getElementById("err").innerHTML = "*Name Required"; 
+				setTimeout(function(){document.getElementById("err").innerHTML = "&nbsp;"}, 4000);
+				return false;
+			}
+			var b=document.forms["FORM"]["LNAME"].value;
+			if (b==null || b=="")
+			{
+				document.getElementById("err").innerHTML = "*Name Required"; 
+				setTimeout(function(){document.getElementById("err").innerHTML = "&nbsp;"}, 4000);
+				return false;
+			}
+			
+			var c=document.forms["FORM"]["datepicker"].value;
+			var monthfield=c.split("/")[0];
+			var dayfield=c.split("/")[1];
+			var yearfield=c.split("/")[2];
+			var dayobj = new Date(yearfield, monthfield-1, dayfield);
+			if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))
+			{
+				document.getElementById("err").innerHTML = "*Invalid Date of Birth";
+				setTimeout(function(){document.getElementById("err").innerHTML = "&nbsp;"}, 4000);
+				return false;
+			}
+
+			var d=document.forms["FORM"]["EMAIL"].value;
+			var atpos=d.indexOf("@");
+			var dotpos=d.lastIndexOf(".");
+			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=d.length)
+			{
+				document.getElementById("err").innerHTML = "*Email address invalid";
+				setTimeout(function(){document.getElementById("err").innerHTML = "&nbsp;"}, 4000);
+				return false;
+			}
+			var e=document.forms["FORM"]["PWD"].value;
+			var f=document.forms["FORM"]["RPWD"].value;
+			if (e.length<=6)
+			{
+				document.getElementById("err").innerHTML = "*Password length should be more than 6 characters";
+				setTimeout(function(){document.getElementById("err").innerHTML = "&nbsp;"}, 4000);
+				return false;
+			}
+			else if (e!=f)
+			{
+				document.getElementById("err").innerHTML = "*Passwords do not match";
+				setTimeout(function(){document.getElementById("err").innerHTML = "&nbsp;"}, 4000);
+				return false;
+			}
+			alert("Registration Complete!!\nName:\t"+a+" "+b+"\nDOB:\t"+c+"\nEmail:\t"+d+"\nPassword:\t"+e);
+		}
+		function validateFormSignIn()
+		{
+			var d=document.forms["FORM"]["EMAIL"].value;
+			var atpos=d.indexOf("@");
+			var dotpos=d.lastIndexOf(".");
+			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=d.length)
+			{
+				document.getElementById("err").innerHTML = "*Email address invalid";
+				setTimeout(function(){document.getElementById("err").innerHTML = "&nbsp;"}, 4000);
+				return false;
+			}
+			var e=document.forms["FORM"]["PWD"].value;
+			alert("Success!!\nEmail:\t"+d+"\nPassword:\t"+e);
+		}
+		function selectEvent()
+		{
+			var x=document.getElementById("FINISH").value;
+			if(x=="signin")
+			{
+				return validateFormSignIn();
+			}
+			else if(x=="submit")
+			{
+				return validateForm();
+			}
+		}
+		function inup()
+		{
+			var x=document.getElementById("InUp").innerHTML;
+			if (x=="Sign In")
+			{
+				document.getElementById("F0").style.display = "none";
+				document.getElementById("F1").style.display = "none";
+				document.getElementById("F2").style.display = "none";
+				document.getElementById("F3").style.display = "none";
+				document.getElementById("F6").style.display = "none";
+				document.getElementById("InUp").innerHTML = "Sign Up";
+				document.getElementById("title").innerHTML = '<h1 style="margin-top: 60px;">Sign In</h1>';
+				document.getElementById("InUp").align = "right";
+				document.getElementById("img").innerHTML = "<img src=\"arrowb.png\" width=25 height=25 align=right style=\"cursor:pointer;\" onclick=\"return inup()\">";
+				document.getElementById("soc1").style.display = "none";
+				document.getElementById("soc2").style.display = "none";
+				document.getElementById("soc3").style.display = "none";
+				document.getElementById("sub").style.display = "none";
+				document.getElementById("FINISH").innerHTML="SignIn";
+				document.getElementById("FINISH").value="signin";
+				
+			}
+			else if (x=="Sign Up")
+			{
+				document.getElementById("F0").style.display = "block";
+				document.getElementById("F1").style.display = "block";
+				document.getElementById("F2").style.display = "block";
+				document.getElementById("F3").style.display = "block";
+				document.getElementById("F6").style.display = "block";
+				document.getElementById("InUp").innerHTML = "Sign In";
+				document.getElementById("title").innerHTML = '<h1 style="margin-top: 60px;">Sign Up</h1>';
+				document.getElementById("InUp").align = "right";
+				document.getElementById("img").innerHTML = "<img src=\"arrowf.png\" width=25 height=25 align=right style=\"cursor:pointer;\" onclick=\"return inup()\">";
+				document.getElementById("FINISH").innerHTML="Submit Form";
+				document.getElementById("FINISH").value="submit";
+			}
+			
+		}
+		</script>
+	</head>
+	<body id="canvas">
+		<div id="dash">
+			<a href="#"><img src="logo.png" height="40" style="float:left; margin-left: 250px; margin-top: 9px;"></a>
+			<div style="float:right; width: 65%;">
+				<input type="text" id="search" name="search" class="search"></input>
+				<nav>
+					<ul>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About<img src="menu_arrow.png">
+							<ul>
+								<a href="#"><li>TalentOn</li></a>
+								<a href="#"><li>Mission</li></a>
+								<a href="#"><li>Team</li></a>
+							</ul>
+						</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Partners</li>
+					</ul>
+				</nav>
+				<div class="menu" style="margin-top: -11px; margin-left: 40px;">Gallery</div>
+			</div>
+		</div>
+		
+		<div class="container1">
+			<div class="header" id="title">
+				<h1 style="margin-top: 60px;">Sign Up</h1>
+			</div>
+			<div class="header" style="border-bottom:0px;">
+				<div id="lform">
+					<div class="form">
+						<form name="FORM" style="margin-top:20px;">
+							<div id="F0" style="margin-bottom: 10px;">
+								<div class = "label">Designation :</div>
+								<div style="width:240px; display: inline-block;" onClick="return check()">
+								<input type="radio" name="DESIG" id="EMP" value="EMP" style="cursor:pointer;">Employer&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="DESIG" id="DEV" value="DEV" style="cursor:pointer;">Developer
+								</div>
+							</div>
+							<div id="F1">
+								<div class = "label">First Name :</div>
+								<input type = "text" name = "FNAME" class = "field" id = "FNAME"><br/>
+							</div>
+							<div id="F2">
+								<div class = "label">Last Name :</div>
+								<input type = "text" name = "LNAME" class = "field" id = "LNAME"><br/>
+							</div>
+							<div id="F3">
+								<div class = "label">Date of Birth :</div>
+								<input type="text" name = "DATE" class = "field" id="datepicker" style="cursor:pointer;">
+							</div>
+							<div id="F4">
+								<div class = "label">E-mail :</div>
+								<input type = "text" name = "EMAIL" class = "field" id = "EMAIL"><br/>
+							</div>
+							<div id="F5">
+								<div class = "label">Password :</div>
+								<input type = "password" name = "PWD" class = "field" id = "PWD"><br/>
+							</div>
+							<div id="F6">
+								<div class = "label">Confirm Password :</div>
+								<input type = "password" name = "RPWD" class = "field" id = "RPWD"><br/>
+							</div>
+							<button class="btn btn-1 btn-1e" name = "FINISH"  id="FINISH" value = "submit" onclick = "return selectEvent()">Submit Form</button>
+							<p align=center style="color: rgba(22,37,229,1); display: none;" id="sub">Sign-up via</p>
+							<p align=center>
+								<img src="linkedin.png" width=50 height=50 class="socb" id="soc1" onClick="signupOther('https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=75vjsp67gi9y8a&state=BASD789JKLZIU78K09&scope=r_basicprofile%20r_emailaddress&redirect_uri=http://www.technited.com/intern/TalentOn/linkedInApi.php')">
+					<img src="github.png" width=50 height=50 class="socb"  id="soc2" onClick="signupOther('https://github.com/login/oauth/authorize?client_id=5da9154c8e458174d69d')">
+					<img src="angellist.png" width=50 height=50 class="socb"  id="soc3" onClick="signupOther('https://angel.co/api/oauth/authorize?client_id=0048b1c8cf67707ac87303bf1e080a87&response_type=code')">
+							</p>
+						</form>
+					</div>
+					<p id="err" class="error" align=center>&nbsp;</p>
+				</div>
+				<div id="rform" style="border-right:0px;">
+					<a>
+						<div id="img" style="width:70%;">
+							<img src="arrowf.png" width=25 height=25 align=right style="cursor:pointer;" onClick="return inup()">
+						</div>
+						<p id="InUp" align="right">Sign In</p></a>
+				</div>
+			</div>
+		<script src="js/classie.js"></script>
+	</body>
+</html>
